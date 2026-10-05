@@ -89,19 +89,17 @@ p{
     list-style-type: none;
     padding-left : 0;
     margin : 0;
-    display : flex;
 
-    /* 카드가 좁게 눌리지 않고 다음줄로 이동 */
-    flex-wrap : wrap;
+    display : grid;
 
-    align-items : stretch;
+    /* 들어갈 수 있는 만큼 열을 만들고, 카드 너비는 최소 260px부터 남은 공간까지 사용 */
+    grid-template-columns : repeat(auto-fit, minmax(260px, 1fr));
+
     gap : 24px;
 }
 
 .feature-card{
-    /* 늘어나기 1, 줄어들기 1, 기본 너비 260px*/
-    flex : 1 1 260px;
-
+    min-width : 0;
     padding : 24px;
     margin-bottom : 0px;
     border : 1px solid #deddea;
@@ -196,16 +194,9 @@ button:active{
     nav a{
         padding : 8px 0;
     }
-
-    /* 기능 카드를 한 열로 배치 */
+    
     .features-list{
-        flex-direction : column;
-    }
-
-    /* 세로 배치에서는 260px을 카드 높이로 사용하지 않음 */
-    .feature-card{
-        flex : none;
-        width : 100%;
+        grid-template-columns : 1fr;
     }
 
     /* 이메일 입력창과 버튼도 한 열로 배치 */
@@ -213,6 +204,7 @@ button:active{
         flex-direction : column;
         align-items : stretch;
     }
+
     input, 
     button{
         width : 100%;
