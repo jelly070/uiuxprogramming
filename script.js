@@ -50,7 +50,9 @@ const agreeMessage = document.querySelector("#agreeMessage");
 const startButton = document.querySelector("#startButton");
 
 function handleThemeClick(event){
-    console.log("click:", event.currentTarget.id);
+    const isDark = document.body.classList.toggle("dark");
+
+    themeButton.textContent = isDark ? "라이트 테마로 바꾸기" : "다크 테마로 바꾸기";
 }
 
 themeButton.addEventListener("click", handleThemeClick);

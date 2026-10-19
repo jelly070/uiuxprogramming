@@ -206,6 +206,23 @@ button:active{
 
 }
 
+body.dark{
+    color :#f4f4f8;
+    background-color : #20212a;
+}
+
+body.dark p,
+body.dark nav a{
+    color : #d0d0d8;
+}
+
+body.dark .feature-card,
+body.dark .event-card,
+body.dark .subscribe-card{
+    background-color : #35463c;
+    border-color : #2d2e38;
+}
+
 /* 웹페이지가 표시되는 가로 폭이 768px 이하일 때만 적용 */
 @media(max-width : 768px){
     body{
