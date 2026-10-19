@@ -223,6 +223,18 @@ body.dark .subscribe-card{
     border-color : #2d2e38;
 }
 
+#agreeMessage{
+    padding : 12px;
+    border-radius : 10px;
+    background-color : #f8f9f8;
+}
+
+#agreeMessage.is-ready{
+    color : #292a31;
+    background-color : #eaf3ff;
+    font-weight : 700;
+}
+
 /* 웹페이지가 표시되는 가로 폭이 768px 이하일 때만 적용 */
 @media(max-width : 768px){
     body{
