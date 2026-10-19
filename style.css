@@ -235,6 +235,59 @@ body.dark .subscribe-card{
     font-weight : 700;
 }
 
+.tabs{
+    display : flex;
+    flex-wrap : wrap;
+    gap : 8px;
+    margin-bottom : 12px;
+}
+
+.tab{
+    color : #3f795b;
+    background-color : #ffffff;
+    border : 1px solid #c9e2d0;
+}
+
+.tab:hover{
+    color : #ffffff;
+    background-color : #3f795b;
+}
+
+.tab.is-active{
+    color : #3f795b;
+    background-color : #ffffff;
+    border-color : 3f795b;
+    border-bottom : 4px solid currentColor;
+    font-weight : 700;
+}
+
+.panel{
+    padding : 24px;
+    border : 1px solid #c9e2d0;
+    border-radius : 12px;
+    background-color : #eaf4ec;
+}
+
+.panel[hidden]{
+    display : none;
+}
+
+body.dark .tab{
+    color : #d8d8e2;
+    background-color : #2d2e38;
+    border-color : #505f55;
+}
+
+body.dark .tab.is-active{
+    color : #2d3832;
+    border-color : #8bb79a;
+}
+
+body.dark .panel{
+    background-color : #2d2e38;
+    border-color : #505f55;
+}
+
 /* 웹페이지가 표시되는 가로 폭이 768px 이하일 때만 적용 */
 @media(max-width : 768px){
     body{
