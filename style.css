@@ -164,6 +164,48 @@ button:active{
     transform : translateY(1px);
 }
 
+.event-grid{
+    display : grid;
+    grid-template-columns : repeat(auto-fit, minmax(260px, 1fr));
+    gap : 24px;
+}
+
+.event-card{
+    min-width : 0;
+    padding : 24px;
+    border : 1px solid #C9E2D0;
+    border-radius : 12px;
+    background-color : #ffffff;
+}
+
+.event-card label:not(.agree-row){
+    display : block;
+    margin-bottom : 8px;
+    font-weight : 700;
+}
+
+.event-card input[type="text"]{
+    width : 100%;
+}
+
+.agree-row{
+    display : flex;
+    align-items : flex-start;
+    gap : 8px;
+}
+
+.agree-row input{
+    flex : 0 0 auto;
+    margin-top : 6px;
+}
+
+#startButton:disabled{
+    color : #ffffff;
+    background-color : #abc9b2;
+    cursor : not-allowed;
+
+}
+
 /* 웹페이지가 표시되는 가로 폭이 768px 이하일 때만 적용 */
 @media(max-width : 768px){
     body{
