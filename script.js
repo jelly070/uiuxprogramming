@@ -82,3 +82,37 @@ function handleAgreeChange(){
 }
 
 agreeCheck.addEventListener("change", handleAgreeChange);
+
+const tabs = document.querySelectorAll(".tab");
+const panels = document.querySelectorAll(".panel");
+
+function resetTabsAndPanels() {
+    tabs.forEach(function (tab) {
+        tab.classList.remove("is-active");
+        tab.setAttribute("aria-selected", "false");
+    });
+    panels.forEach(function (panel){
+        panel.classList.remove("is-active");
+        panel.hidden = true;
+    });
+}
+
+function activateTab(clickedTab) {
+    const targetSelector = clickedTab.dataset.target;
+    const targetPanel = document.querySelector(targetSelector);
+
+    clickedTab.classList.add("is-active");
+    clickedTab.setAttribute("aria-selected", "true");
+
+    targetPanel.classList.add("is-active");
+    targetPanel.hidden = false;
+}
+
+function handleTabClick(event){
+    resetTabsAndPanels();
+    activateTab(event.currentTarget);
+}
+
+tabs.forEach(function (tab) {
+    tab.addEventListener("click", handleTabClick);
+});
