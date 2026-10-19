@@ -338,6 +338,16 @@ body.dark .panel{
     button{
         min-height : 48px;
     }
+
+    .tabs{
+        flex-direction : column;
+        align-items : stretch;
+    }
+    
+    .tab{
+        width : 100%;
+        text-align : left;
+    }
 }
 
 #subscribeMessage{
