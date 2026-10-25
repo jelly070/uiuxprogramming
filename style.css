@@ -288,6 +288,68 @@ body.dark .panel{
     border-color : #505f55;
 }
 
+
+#memory-dialog{
+    width : min(520px, calc(100% - 32px));
+    max-width : none;
+    padding : 24px;
+    border : 1px solid #c9e2d0;
+    border-radius : 12px;
+    background-color : #ffffff;
+    color : #292a31;
+}
+#memory-dialog::backdrop {background : rgba(30, 45, 35, .6);}
+#memory-dialog .dialog-actions {display : flex; gap : 12px; justify-content : flex-end; margin-top : 20px;}
+#memory-dialog button {min-height : 44px;}
+body.dark #memory-dialog {background : #35463c; color : #ffffff;}
+
+.training-flow{
+    padding : 24px;
+    border : 1px solid #c9e2d0;
+    border-radius : 24px;
+    background-color : #ffffff;
+}
+.training-flow[hidden],
+.training-flow .step[hidden],
+.training-flow fieldset[hidden] {display : none;}
+.training-flow .progress {display : flex; flex-wrap : wrap; gap : 12px;}
+.training-flow .progress_item.is-active{
+    color : #3f795b;
+    font-weight : 800;
+}
+
+.training-flow .error-message{
+    min-height : 24px;
+    color : #9d243d;
+    font-weight : 700;
+}
+.training-flow #learner-name.has-error {border-color : #9d243d;}
+.training-flow #difficulty-range {width : 100%; accent-color : #3f795b;}
+.training-flow input[type="checkbox"],
+.training-flow input[type="radio"]{
+    flex : 0 0 auto;
+    width : auto;
+    accent-color : #3f795b;
+}
+
+.training-flow .summary-list > div{
+    display : flex;
+    justify-content : space-between;
+    gap : 16px;
+    padding : 12px;
+    border-bottom : 1px solid #c9e2d0;
+}
+.training-flow .step-actions{
+    display : flex;
+    gap : 12px;
+    margin-top : 20px;
+}
+body.dark .training-flow{
+    background-color : #35463c;
+    border-color : #505f55;
+}
+
+
 /* 웹페이지가 표시되는 가로 폭이 768px 이하일 때만 적용 */
 @media(max-width : 768px){
     body{
@@ -348,6 +410,14 @@ body.dark .panel{
         width : 100%;
         text-align : left;
     }
+
+    .training-flow {padding : 20px;}
+    #memory-dialog .dialog-actions {flex-direction : column-reverse;}
+    #memory-dialog .dialog-actions button {width : 100%;}
+    .training-flow .step-actions {flex-direction : column-reverse;}
+    .training-flow .step-actions button {width : 100%;}
+    .training-flow input[type="checkbox"],
+    .training-flow input[type="radio"] {width : auto;}
 }
 
 #subscribeMessage{
