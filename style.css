@@ -480,6 +480,11 @@ body.dark .training-flow{
     align-items: center;
     gap: 12px;
     margin-top: 24px;
+    margin-bottom: 24px;
+    padding: 12px 20px;
+    border: 1px solid #c9e2d0;
+    border-radius: 12px;
+    background-color: #f4f8f5;
 }
 
 .quiz-progress p {
@@ -549,14 +554,9 @@ body.dark .training-flow{
     font-weight: 700;
 }
 
-.quiz-options label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.quiz-options input[type="radio"] {
-    width: auto;
+.quiz-options label input[type="radio"] {
+    width: 20px;
+    margin: 12px;
     accent-color: #3f795b;
 }
 
