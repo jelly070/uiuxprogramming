@@ -418,6 +418,27 @@ body.dark .training-flow{
     .training-flow .step-actions button {width : 100%;}
     .training-flow input[type="checkbox"],
     .training-flow input[type="radio"] {width : auto;}
+
+/* 모바일 화면에서 퀴즈 배치 변경 */
+    .quiz-card {
+        padding: 20px;
+        }
+
+    .quiz-images {
+        gap: 8px;
+    }
+
+    .quiz-actions {
+        flex-direction: column-reverse;
+    }
+
+    .quiz-actions button {
+        width: 100%;
+    }
+
+    .quiz-options input[type="radio"] {
+        width: auto;
+    }
 }
 
 #subscribeMessage{
@@ -437,4 +458,148 @@ body.dark .training-flow{
     color : #ffffff;
     background-color : #abc9b2;
     cursor : not-allowed;
+}
+
+/* 중간고사 - 기억력 미니 퀴즈 전체 영역 */
+.quiz-card {
+    margin-top: 32px;
+    padding: 24px;
+    border: 1px solid #c9e2d0;
+    border-radius: 24px;
+    background-color: #ffffff;
+}
+
+.quiz-header h2 {
+    color: #292a31;
+}
+
+/* 퀴즈 진행 단계 표시 */
+.quiz-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.quiz-progress p {
+    color: #3f795b;
+    font-weight: 800;
+}
+
+.quiz-progress span {
+    color: #555763;
+    font-weight: 700;
+}
+
+.quiz-progress-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.quiz-progress-item {
+    flex: 1;
+    height: 8px;
+    border-radius: 8px;
+    background-color: #e5e9e6;
+}
+
+.quiz-progress-item.is-active {
+    background-color: #3f795b;
+}
+
+/* 현재 단계만 화면에 표시 */
+.quiz-step[hidden] {
+    display: none;
+}
+
+/* 기억할 그림 3개 배치 */
+.quiz-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.quiz-images img {
+    width: 100%;
+    margin: 0;
+    border: 1px solid #c9e2d0;
+    border-radius: 12px;
+    background-color: #f4f8f5;
+}
+
+.quiz-tip {
+    margin-top: 24px;
+    font-weight: 700;
+}
+
+/* 퀴즈 정답 선택 영역 */
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid #c9e2d0;
+    border-radius: 12px;
+}
+
+.quiz-options legend {
+    font-weight: 700;
+}
+
+.quiz-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quiz-options input[type="radio"] {
+    width: auto;
+    accent-color: #3f795b;
+}
+
+.quiz-step .error-message {
+    min-height: 24px;
+    color: #9d243d;
+    font-weight: 700;
+}
+
+.quiz-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.quiz-result-box {
+    padding: 20px;
+    border: 1px solid #c9e2d0;
+    border-radius: 12px;
+    background-color: #f4f8f5;
+    margin-bottom: 20px;
+}
+
+#quiz-result-title {
+    color: #3f795b;
+    font-weight: 800;
+}
+
+/* 다크 테마 적용 */
+body.dark .quiz-card {
+    background-color: #35463c;
+    border-color: #505f55;
+}
+
+body.dark .quiz-header h2 {
+    color: #ffffff;
+}
+
+body.dark .quiz-result-box {
+    background-color: #405348;
+    border-color: #505f55;
+}
+
+body.dark .quiz-progress span {
+    color: #ffffff;
 }

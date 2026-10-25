@@ -224,8 +224,7 @@
             </section>
         </section>
 
-        
-        <section id="memory-quiz" class="quiz-card" hidden>
+        <section id="memory-quiz" class="quiz-card">
             <div class="quiz-header">
                 <h2>기억력 미니 퀴즈</h2>
                 <p>그림을 기억하고 문제를 풀며 기억력을 훈련해 보세요.</p>
@@ -252,7 +251,7 @@
                     <img src="assets\images\whale.png" alt="고래 그림">
                 </div>
                     <p class="quiz-tip">충분히 기억했다면 아래 버튼을 눌러주세요.</p>
-                    <button id="quiz-next" type="button">기억했어요! 문제 풀기</button>
+                    <button id="quiz-next" type="button">문제 풀기</button>
                 </div>
 
             <div id="quiz-question" class="quiz-step" hidden>
@@ -262,16 +261,16 @@
                 <fieldset class="quiz-options">
                     <legend>정답 선택</legend>
                     <label>
-                        <input type="radio" name="quiz-answer" value="rabbit">토끼 🐰</label>
+                        <input type="radio" name="quiz-answer" value="apple">사과 🍎</label>
                     <label>
-                        <input type="radio" name="quiz-answer" value="whale">고래 🐳</label>
+                        <input type="radio" name="quiz-answer" value="glasses">안경 👓</label>
                     <label>
                         <input type="radio" name="quiz-answer" value="cat">고양이 🐱</label>
                 </fieldset>
 
                 <p id="quiz-error" class="error-message" aria-live="polite"></p>
                 <div class="quiz-actions">
-                    <button id="quiz-prev" type="button">다시 보기</button>
+                    <button id="quiz-prev" type="button">다시보기</button>
                     <button id="quiz-submit" type="button">정답 확인하기</button>
                 </div>
             </div>
@@ -282,7 +281,7 @@
                     <p id="quiz-result-title"></p>
                     <p id="quiz-result-message" aria-live="polite"></p>
                 </div>
-                <button id="quiz-retry" type="button">처음부터 다시 도전하기</button>
+                <button id="quiz-retry" type="button">다시 도전하기</button>
             </div>
         </section>
 

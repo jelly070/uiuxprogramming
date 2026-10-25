@@ -237,3 +237,84 @@ restartButton.addEventListener("click", () => {
     summaryTime.textContent = "";
     showStep(0);
 });
+
+// 기억력 미니 퀴즈
+const quizMemory = document.querySelector("#quiz-memory");
+const quizQuestion = document.querySelector("#quiz-question");
+const quizResult = document.querySelector("#quiz-result");
+const quizNext = document.querySelector("#quiz-next");
+const quizPrev = document.querySelector("#quiz-prev");
+const quizSubmit = document.querySelector("#quiz-submit");
+const quizRetry = document.querySelector("#quiz-retry");
+const quizError = document.querySelector("#quiz-error");
+const quizResultTitle = document.querySelector("#quiz-result-title");
+const quizResultMessage = document.querySelector("#quiz-result-message");
+const quizStepText = document.querySelector("#quiz-step-text");
+const quizStepCount = document.querySelector("#quiz-step-count");
+const quizProgressItems = document.querySelectorAll(".quiz-progress-item");
+
+// 퀴즈 단계 변경
+function showQuizStep(index) {
+    quizMemory.hidden = index !== 0;
+    quizQuestion.hidden = index !== 1;
+    quizResult.hidden = index !== 2;
+
+    const stepNames = [
+        "STEP 01 · 그림 기억하기",
+        "STEP 02 · 문제 풀기",
+        "STEP 03 · 결과 확인"
+    ];
+    quizStepText.textContent = stepNames[index];
+
+// 현재 단계 번호 표시
+    if (index === 0) {
+        quizStepCount.textContent = "1 / 3";
+    } else if (index === 1) {
+        quizStepCount.textContent = "2 / 3";
+    } else {
+        quizStepCount.textContent = "3 / 3";
+    }
+}
+
+// 정답을 선택했는지 확인하고 결과 표시
+quizSubmit.addEventListener("click", () => {
+    const selectedAnswer = document.querySelector('input[name="quiz-answer"]:checked');
+
+    if (!selectedAnswer) {
+        quizError.textContent = "정답을 선택해주세요.";
+        return;
+    }
+    quizError.textContent = "";
+
+// 사과를 선택하면 정답, 나머지는 오답
+    if (selectedAnswer.value === "apple") {
+        quizResultTitle.textContent = "정답입니다!";
+        quizResultMessage.textContent = "정확하게 기억했어요!";
+    } else {
+        quizResultTitle.textContent = "틀렸어요!";
+        quizResultMessage.textContent = "정답은 사과였어요. 다시 도전해보세요!";
+    }
+    showQuizStep(2);
+});
+
+// 그림을 기억한 후 문제 화면으로 이동
+    quizNext.addEventListener("click", () => {
+        showQuizStep(1);
+    });
+
+// 이전 단계로 돌아가 그림 다시 보기
+    quizPrev.addEventListener("click", () => {
+        showQuizStep(0);
+    });
+
+// 퀴즈를 처음 상태로 초기화
+quizRetry.addEventListener("click", () => {
+    const selectedAnswer = document.querySelector('input[name="quiz-answer"]:checked');
+    if (selectedAnswer) {
+        selectedAnswer.checked = false;
+    }
+    quizError.textContent = "";
+    quizResultTitle.textContent = "";
+    quizResultMessage.textContent = "";
+    showQuizStep(0);
+});
