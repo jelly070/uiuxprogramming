@@ -85,28 +85,6 @@ p{
     line-height : 1.7;
 }
 
-.features-list{
-    list-style-type: none;
-    padding-left : 0;
-    margin : 0;
-
-    display : grid;
-
-    /* 들어갈 수 있는 만큼 열을 만들고, 카드 너비는 최소 260px부터 남은 공간까지 사용 */
-    grid-template-columns : repeat(auto-fit, minmax(260px, 1fr));
-
-    gap : 24px;
-}
-
-.feature-card{
-    min-width : 0;
-    padding : 24px;
-    margin-bottom : 0px;
-    border : 1px solid #C9E2D0;
-    border-radius : 12px;
-    background-color : #EAF4EC;
-}
-
 *,
 *::before,
 *::after{
@@ -121,10 +99,10 @@ p{
     margin-top : 32px;
 }
 
-form{
-    display : flex;
-    align-items : center;
-    gap : 12px;
+#subscribe-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 input{
@@ -142,7 +120,7 @@ button{
     color : #ffffff;
     background-color : #5B9A78;
     cursor : pointer;
-    transition : background-color 0.2s transform 0.2s ease;
+    transition : background-color 0.2s, transform 0.2s ease;
 }
 
 input,
@@ -162,77 +140,6 @@ input:focus{
 
 button:active{
     transform : translateY(1px);
-}
-
-.event-grid{
-    display : grid;
-    grid-template-columns : repeat(auto-fit, minmax(260px, 1fr));
-    gap : 24px;
-}
-
-.event-card{
-    min-width : 0;
-    padding : 24px;
-    border : 1px solid #C9E2D0;
-    border-radius : 12px;
-    background-color : #ffffff;
-}
-
-.event-card label:not(.agree-row){
-    display : block;
-    margin-bottom : 8px;
-    font-weight : 700;
-}
-
-.event-card input[type="text"]{
-    width : 100%;
-}
-
-.agree-row{
-    display : flex;
-    align-items : flex-start;
-    gap : 8px;
-}
-
-.agree-row input{
-    flex : 0 0 auto;
-    margin-top : 6px;
-}
-
-#startButton:disabled{
-    color : #ffffff;
-    background-color : #abc9b2;
-    cursor : not-allowed;
-
-}
-
-body.dark{
-    color :#f4f4f8;
-    background-color : #20212a;
-}
-
-body.dark p,
-body.dark nav a{
-    color : #d0d0d8;
-}
-
-body.dark .feature-card,
-body.dark .event-card,
-body.dark .subscribe-card{
-    background-color : #35463c;
-    border-color : #2d2e38;
-}
-
-#agreeMessage{
-    padding : 12px;
-    border-radius : 10px;
-    background-color : #f8f9f8;
-}
-
-#agreeMessage.is-ready{
-    color : #292a31;
-    background-color : #eaf3ff;
-    font-weight : 700;
 }
 
 .tabs{
@@ -256,7 +163,7 @@ body.dark .subscribe-card{
 .tab.is-active{
     color : #3f795b;
     background-color : #ffffff;
-    border-color : 3f795b;
+    border-color : #3f795b;
     border-bottom : 4px solid currentColor;
     font-weight : 700;
 }
@@ -271,84 +178,6 @@ body.dark .subscribe-card{
 .panel[hidden]{
     display : none;
 }
-
-body.dark .tab{
-    color : #d8d8e2;
-    background-color : #2d2e38;
-    border-color : #505f55;
-}
-
-body.dark .tab.is-active{
-    color : #2d3832;
-    border-color : #8bb79a;
-}
-
-body.dark .panel{
-    background-color : #2d2e38;
-    border-color : #505f55;
-}
-
-
-#memory-dialog{
-    width : min(520px, calc(100% - 32px));
-    max-width : none;
-    padding : 24px;
-    border : 1px solid #c9e2d0;
-    border-radius : 12px;
-    background-color : #ffffff;
-    color : #292a31;
-}
-#memory-dialog::backdrop {background : rgba(30, 45, 35, .6);}
-#memory-dialog .dialog-actions {display : flex; gap : 12px; justify-content : flex-end; margin-top : 20px;}
-#memory-dialog button {min-height : 44px;}
-body.dark #memory-dialog {background : #35463c; color : #ffffff;}
-
-.training-flow{
-    padding : 24px;
-    border : 1px solid #c9e2d0;
-    border-radius : 24px;
-    background-color : #ffffff;
-}
-.training-flow[hidden],
-.training-flow .step[hidden],
-.training-flow fieldset[hidden] {display : none;}
-.training-flow .progress {display : flex; flex-wrap : wrap; gap : 12px;}
-.training-flow .progress_item.is-active{
-    color : #3f795b;
-    font-weight : 800;
-}
-
-.training-flow .error-message{
-    min-height : 24px;
-    color : #9d243d;
-    font-weight : 700;
-}
-.training-flow #learner-name.has-error {border-color : #9d243d;}
-.training-flow #difficulty-range {width : 100%; accent-color : #3f795b;}
-.training-flow input[type="checkbox"],
-.training-flow input[type="radio"]{
-    flex : 0 0 auto;
-    width : auto;
-    accent-color : #3f795b;
-}
-
-.training-flow .summary-list > div{
-    display : flex;
-    justify-content : space-between;
-    gap : 16px;
-    padding : 12px;
-    border-bottom : 1px solid #c9e2d0;
-}
-.training-flow .step-actions{
-    display : flex;
-    gap : 12px;
-    margin-top : 20px;
-}
-body.dark .training-flow{
-    background-color : #35463c;
-    border-color : #505f55;
-}
-
 
 /* 웹페이지가 표시되는 가로 폭이 768px 이하일 때만 적용 */
 @media(max-width : 768px){
@@ -380,16 +209,12 @@ body.dark .training-flow{
     nav a{
         padding : 8px 0;
     }
-    
-    .features-list{
-        grid-template-columns : 1fr;
-    }
 
     /* 이메일 입력창과 버튼도 한 열로 배치 */
-    form{
-        flex-direction : column;
-        align-items : stretch;
-    }
+    #subscribe-form {
+        flex-direction: column;
+        align-items: stretch;
+}
 
     input, 
     button{
@@ -410,14 +235,6 @@ body.dark .training-flow{
         width : 100%;
         text-align : left;
     }
-
-    .training-flow {padding : 20px;}
-    #memory-dialog .dialog-actions {flex-direction : column-reverse;}
-    #memory-dialog .dialog-actions button {width : 100%;}
-    .training-flow .step-actions {flex-direction : column-reverse;}
-    .training-flow .step-actions button {width : 100%;}
-    .training-flow input[type="checkbox"],
-    .training-flow input[type="radio"] {width : auto;}
 
 /* 모바일 화면에서 퀴즈 배치 변경 */
     .quiz-card {
@@ -585,21 +402,949 @@ body.dark .training-flow{
     font-weight: 800;
 }
 
-/* 다크 테마 적용 */
-body.dark .quiz-card {
-    background-color: #35463c;
-    border-color: #505f55;
+
+/* 기억력 훈련 계획 만들기 */
+
+:root {
+    --page: #FCFDFB;
+    --surface: #ffffff;
+    --surface-soft: #F4F8F5;
+    --ink: #292a31;
+    --muted: #4F6255;
+    --line: #C9E2D0;
+    --blue: #3F795B;
+    --blue-hover: #305E46;
+    --lavender: #EAF4EC;
+    --danger: #b43147;
+    --shadow: 0 18px 48px rgba(17, 70, 35, .07);
 }
 
-body.dark .quiz-header h2 {
-    color: #ffffff;
+/* 공통 설정 */
+html {
+    scroll-behavior: smooth;
 }
 
-body.dark .quiz-result-box {
-    background-color: #405348;
-    border-color: #505f55;
+[hidden] {
+    display: none !important;
 }
 
+button:disabled {
+    cursor: not-allowed;
+    opacity: .6;
+}
+
+/* 훈련 계획 영역 */
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+}
+
+.section {
+    margin-block: 88px;
+    scroll-margin-top: 96px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 26px;
+}
+
+.section-heading h2 {
+    margin-bottom: 0;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 800;
+}
+
+.section-heading > p {
+    max-width: 400px;
+    margin-bottom: 2px;
+    font-size: 14px;
+}
+
+.eyebrow {
+    margin-bottom: 15px;
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+/* 버튼 */
+.button {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 11px 20px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    transition: background .18s, border-color .18s,
+                transform .18s;
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+.button-primary {
+    color: #fff;
+    background: var(--blue);
+    box-shadow: 0 8px 20px rgba(63, 121, 91, .17);
+}
+
+.button-primary:hover {
+    background: var(--blue-hover);
+}
+
+.button-secondary {
+    color: var(--ink);
+    background: var(--surface);
+    border-color: var(--line);
+}
+
+.button-secondary:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    background: var(--surface);
+}
+
+.button-text {
+    min-height: 44px;
+    padding-inline: 8px;
+    color: var(--blue);
+    background: transparent;
+}
+
+.button-text:hover {
+    background: var(--surface-soft);
+    color: var(--blue);
+}
+
+/* 훈련 계획 카드 */
+.planner-card {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+/* 진행 단계 표시 */
+.progress {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid var(--line);
+    list-style: none;
+}
+
+.progress-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 78px;
+    border-right: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.progress-item:last-child {
+    border-right: 0;
+}
+
+.progress-item span {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--surface-soft);
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.progress-item.is-current {
+    color: var(--blue);
+    background: #F4F8F5;
+}
+
+.progress-item.is-current span,
+.progress-item.is-done span {
+    color: #fff;
+    background: var(--blue);
+}
+
+.progress-item.is-done {
+    color: var(--ink);
+}
+
+/* 각 단계 */
+#plan-form {
+    display: block;
+}
+
+.flow-step {
+    max-width: 750px;
+    min-height: 470px;
+    padding: 48px 48px 44px;
+    margin: auto;
+}
+
+.flow-step h3 {
+    margin-bottom: 7px;
+    font-size: clamp(24px, 3vw, 30px);
+}
+
+.step-kicker {
+    margin-bottom: 10px;
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .06em;
+}
+
+.step-description {
+    margin-bottom: 31px;
+    font-size: 14px;
+}
+
+/* 입력 필드 */
+.field {
+    margin-bottom: 23px;
+}
+
+.field > label,
+.choice-fieldset legend,
+.qna-options legend {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.required,
+.optional {
+    margin-left: 5px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.required {
+    color: var(--blue);
+}
+
+.optional {
+    color: var(--muted);
+}
+
+.field input[type="text"] {
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 15px;
+    border: 1px solid #A8C9B2;
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--ink);
+    outline: none;
+}
+
+.field input[type="text"]:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(63, 121, 91, .12);
+}
+
+.field input[type="text"][aria-invalid="true"] {
+    border-color: var(--danger);
+}
+
+.field input::placeholder {
+    color: #8993a8;
+}
+
+.field-help {
+    margin: 5px 0 0;
+    font-size: 12px;
+}
+
+.field-error {
+    margin: 6px 0 0;
+    color: var(--danger);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.field-error:empty {
+    display: none;
+}
+
+/* 훈련 난이도 */
+.choice-fieldset,
+.qna-options {
+    padding: 0;
+    border: 0;
+}
+
+.duration-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.choice-card {
+    display: block;
+    cursor: pointer;
+}
+
+.choice-card input {
+    position: absolute;
+    opacity: 0;
+}
+
+.choice-card span {
+    display: flex;
+    flex-direction: column;
+    min-height: 96px;
+    padding: 17px;
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    background: var(--surface);
+}
+
+.choice-card strong {
+    color: var(--ink);
+    font-size: 18px;
+}
+
+.choice-card small {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.choice-card input:checked + span {
+    border-color: var(--blue);
+    background: #F4F8F5;
+    box-shadow: inset 0 0 0 1px var(--blue);
+}
+
+.choice-card input:focus-visible + span {
+    outline: 3px solid #A8C9B2;
+    outline-offset: 3px;
+}
+
+/* 훈련 시간 선택 */
+.qna-field {
+    margin-top: 29px;
+}
+
+.check-row {
+    display: flex !important;
+    gap: 12px;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.check-row input,
+.inline-options input {
+    width: 18px;
+    height: 18px;
+    flex: none;
+    margin: 3px 0 0;
+    accent-color: var(--blue);
+}
+
+.check-row span {
+    display: flex;
+    flex-direction: column;
+}
+
+.check-row strong {
+    color: var(--ink);
+}
+
+.check-row small {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.qna-options {
+    margin: 16px 0 0 30px;
+    padding: 15px 18px;
+    border-radius: 10px;
+    background: var(--surface-soft);
+}
+
+.inline-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 26px;
+}
+
+.inline-options label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--ink);
+    cursor: pointer;
+}
+
+/* 단계 이동 버튼 */
+.step-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 34px;
+}
+
+.step-actions-end {
+    justify-content: flex-end;
+}
+
+.edit-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* 입력 내용 확인 */
+.summary-list {
+    margin: 0;
+    border-top: 1px solid var(--line);
+}
+
+.summary-list div {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 15px 3px;
+    border-bottom: 1px solid var(--line);
+}
+
+.summary-list dt {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.summary-list dd {
+    max-width: 70%;
+    margin: 0;
+    color: var(--ink);
+    font-weight: 800;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+/* 저장 완료 화면 */
+.complete-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.complete-mark {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 21px;
+    border-radius: 16px;
+    color: var(--blue);
+    background: var(--lavender);
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.complete-step p {
+    max-width: 430px;
+}
+
+.complete-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+/* 내 훈련 계획 */
+
+.archive-section {
+    padding-bottom: 30px;
+}
+
+.count-badge {
+    display: inline-grid;
+    place-items: center;
+    min-width: 29px;
+    height: 29px;
+    padding: 0 7px;
+    border-radius: 8px;
+    color: var(--blue);
+    background: var(--lavender);
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.archive-status {
+    margin: 0 0 18px;
+    color: var(--blue);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.archive-status:empty {
+    display: none;
+}
+
+.empty-state {
+    padding: 52px 24px;
+    border: 1px dashed #C9E2D0;
+    border-radius: 18px;
+    background: var(--surface);
+    text-align: center;
+}
+
+.empty-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 47px;
+    height: 47px;
+    margin-bottom: 17px;
+    border-radius: 13px;
+    color: var(--blue);
+    background: var(--lavender);
+    font-size: 26px;
+}
+
+.empty-state h3 {
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+
+.empty-state p {
+    margin-bottom: 22px;
+    font-size: 14px;
+}
+
+/* 저장된 계획 목록 */
+.plan-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.plan-card {
+    min-width: 0;
+    padding: 23px;
+    border: 1px solid var(--line);
+    border-radius: 17px;
+    background: var(--surface);
+}
+
+.plan-card.is-cancelled {
+    opacity: .72;
+}
+
+.plan-card-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.plan-state {
+    padding: 4px 9px;
+    border-radius: 6px;
+    color: var(--blue);
+    background: var(--lavender);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.is-cancelled .plan-state {
+    color: var(--muted);
+    background: var(--surface-soft);
+}
+
+.plan-date {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.plan-title {
+    margin-bottom: 6px;
+    font-size: 20px;
+    overflow-wrap: anywhere;
+}
+
+.plan-meta {
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.plan-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.plan-actions .button {
+    min-height: 41px;
+    padding: 7px 13px;
+    font-size: 13px;
+}
+
+/* 저장한 계획 상세 보기 */
+.plan-dialog {
+    width: min(100% - 32px, 520px);
+    max-width: none;
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: 0 24px 70px rgba(10, 20, 55, .25);
+}
+
+.plan-dialog::backdrop {
+    background: rgba(7, 15, 41, .6);
+}
+
+.dialog-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.dialog-top .eyebrow {
+    margin-top: 10px;
+}
+
+.icon-button {
+    width: 37px;
+    height: 37px;
+    padding: 0;
+    border: 0;
+    border-radius: 9px;
+    background: var(--surface-soft);
+    color: var(--ink);
+    font-size: 24px;
+    line-height: 1;
+}
+
+.plan-dialog h2 {
+    margin-bottom: 8px;
+    font-size: 24px;
+    overflow-wrap: anywhere;
+}
+
+.dialog-status {
+    margin-bottom: 24px;
+    font-size: 13px;
+}
+
+.plan-dialog > .button {
+    width: 100%;
+    margin-top: 25px;
+}
+
+/* 다크 모드 버튼 */
+.theme-button {
+    min-height: 40px;
+    padding: 7px 14px;
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.theme-button:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    background: var(--surface);
+}
+
+/* 다크 모드 */
+body.dark {
+    color-scheme: dark;
+
+    --page: #0b1712;
+    --surface: #17251d;
+    --surface-soft: #24382c;
+    --ink: #f0f5f1;
+    --muted: #b4c8bb;
+    --line: #395343;
+    --blue: #8cc6a1;
+    --blue-hover: #6fae87;
+    --lavender: #294332;
+    --danger: #ff9baa;
+    --shadow: 0 18px 48px rgba(0, 0, 0, .17);
+
+    background-color: var(--page);
+    color: var(--ink);
+}
+
+/* 기존 Memory Up 영역 */
+body.dark h1,
+body.dark h2,
+body.dark h3 {
+    color: var(--ink);
+}
+
+body.dark p,
+body.dark footer,
+body.dark nav a {
+    color: var(--muted);
+}
+
+body.dark nav a:hover {
+    color: var(--blue);
+}
+
+body.dark .panel,
+body.dark .subscribe-card,
+body.dark .quiz-card,
+body.dark .quiz-progress,
+body.dark .quiz-result-box,
+body.dark .quiz-options {
+    background-color: var(--surface);
+    border-color: var(--line);
+}
+
+body.dark .tab {
+    background-color: var(--surface);
+    border-color: var(--line);
+    color: var(--ink);
+}
+
+body.dark .tab.is-active {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+
+body.dark input[type="email"],
+body.dark input[type="text"] {
+    background-color: var(--surface);
+    border-color: var(--line);
+    color: var(--ink);
+}
+
+body.dark #subscribeMessage,
 body.dark .quiz-progress span {
-    color: #ffffff;
+    color: var(--ink);
+}
+
+body.dark #subscribeMessage.is-success {
+    background-color: var(--surface-soft);
+}
+
+/* 교수님 훈련 계획 영역 */
+body.dark .planner-card,
+body.dark .plan-card,
+body.dark .empty-state,
+body.dark .plan-dialog {
+    background-color: var(--surface);
+    border-color: var(--line);
+}
+
+body.dark .progress-item.is-current,
+body.dark .choice-card input:checked + span {
+    background-color: var(--surface-soft);
+}
+
+body.dark .progress-item.is-current span,
+body.dark .progress-item.is-done span {
+    background-color: var(--blue);
+    color: #0b1712;
+}
+
+body.dark .choice-card span {
+    background-color: var(--surface);
+    border-color: var(--line);
+}
+
+body.dark .choice-card strong,
+body.dark .summary-list dd,
+body.dark .check-row strong,
+body.dark .inline-options label {
+    color: var(--ink);
+}
+
+body.dark .qna-options {
+    background-color: var(--surface-soft);
+}
+
+body.dark .button-primary {
+    background-color: var(--blue);
+    color: #0b1712;
+}
+
+body.dark .button-secondary {
+    background-color: var(--surface);
+    border-color: var(--line);
+    color: var(--ink);
+}
+
+body.dark .button-text {
+    background-color: transparent;
+    color: var(--blue);
+}
+
+body.dark .theme-button,
+body.dark .icon-button {
+    background-color: var(--surface-soft);
+    color: var(--ink);
+    border-color: var(--line);
+}
+
+body.dark .field-help,
+body.dark .step-description,
+body.dark .plan-meta,
+body.dark .dialog-status {
+    color: var(--muted);
+}
+
+/* 반응형 */
+
+@media (max-width: 800px) {
+    .section-heading {
+        align-items: start;
+        flex-direction: column;
+        gap: 9px;
+    }
+}
+
+@media (max-width: 600px) {
+    .section {
+        margin-block: 60px;
+        scroll-margin-top: 110px;
+    }
+
+    .section-heading h2 {
+        font-size: 25px;
+    }
+
+    .progress-item {
+        min-height: 66px;
+        flex-direction: column;
+        gap: 3px;
+        font-size: 11px;
+    }
+
+    .progress-item span {
+        width: 23px;
+        height: 23px;
+    }
+
+    .flow-step {
+        min-height: 0;
+        padding: 28px 20px 32px;
+    }
+
+    .flow-step h3 {
+        font-size: 23px;
+    }
+
+    .duration-options {
+        gap: 7px;
+    }
+
+    .choice-card span {
+        min-height: 86px;
+        padding: 12px 7px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .choice-card strong {
+        font-size: 16px;
+    }
+
+    .choice-card small {
+        font-size: 10px;
+    }
+
+    .step-actions {
+        align-items: stretch;
+        flex-direction: column-reverse;
+    }
+
+    .step-actions .button,
+    .complete-actions .button {
+        width: 100%;
+    }
+
+    .edit-actions {
+        justify-content: center;
+    }
+
+    .complete-actions {
+        width: 100%;
+    }
+
+    .summary-list div {
+        gap: 10px;
+    }
+
+    .summary-list dd {
+        max-width: 62%;
+    }
+
+    .plan-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 기존 Memory Up 퀴즈 모바일 디자인 */
+@media (max-width: 768px) {
+    .quiz-card {
+        padding: 20px;
+    }
+
+    .quiz-images {
+        gap: 8px;
+    }
+
+    .quiz-actions {
+        flex-direction: column-reverse;
+    }
+
+    .quiz-actions button {
+        width: 100%;
+    }
+
+    .quiz-options input[type="radio"] {
+        width: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .button {
+        transition: none;
+    }
 }

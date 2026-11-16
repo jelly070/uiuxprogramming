@@ -13,13 +13,6 @@
 </head>
 
 <body>
-    <!--
-        사용자 : 기억력과 암기 능력을 향상시키고 싶은 학습자
-        목적 : 반복적인 암기 훈련을 통해 기억력과 학습 효율 향상
-        핵심 행동 : 암기 훈련 시작하기
-        정보 순서 : 소개 > 기능 > 방법 > 훈련 신청
-    -->
-
     <header>
         <h1>Memory Up | 기억력 훈련 서비스</h1>
         <p>기억을 쌓고, 실력을 높이다.</p>
@@ -27,10 +20,18 @@
         <nav aria-label="주요 메뉴">
             <a href="#about">서비스 소개</a>
             <a href="#features">훈련 기능</a>
-            <a href="#steps">이용 방법</a>
+            <a href="#planner">훈련 계획 만들기</a>
+            <a href="#archive">내 훈련 계획</a>
             <a href="#memory-quiz">기억력 미니 퀴즈</a>
             <a href="#subscribe">훈련 소식 받기</a>
         </nav>
+
+        <button id="theme-button"
+                class="theme-button"
+                type="button"
+                aria-pressed="false">
+            다크 모드
+        </button>
     </header>
 
     <main>
@@ -113,115 +114,293 @@
             </div>
         </section>
 
-        <section id="steps">
-            <h2>이용 방법</h2>
-             <ol>
-                <li>회원가입 후 로그인</li>
-                <li>원하는 암기 훈련의 난이도를 선택합니다.</li>
-                <li>제시된 단어와 정보를 암기합니다.</li>
-                <li>기억력 테스트를 통해 학습한 내용을 확인합니다.</li>
-                <li>테스트 결과를 확인하고 부족한 부분을 반복 학습합니다.</li>
-             </ol>
-        </section>
+        <!-- 기억력 훈련 계획 만들기 -->
+        <section id="planner" class="section container" aria-labelledby="planner-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">NEW SESSION</p>
+                    <h2 id="planner-title">기억력 훈련 계획 만들기</h2>
+                </div>
+                <p>이전 단계로 돌아가도 입력한 내용은 유지됩니다.</p>
+            </div>
 
-        <section id="event-practice">
-            <h2>기억력 훈련 설정</h2>
-            <div class="event-grid">
-                <article class="event-card">
-                    <h3>화면 테마</h3>
-                    <button id="themeButton" type="button">다크 테마로 바꾸기</button>
-                </article>
+            <div class="planner-card">
+                <ol class="progress" aria-label="계획 설정 진행 단계">
+                    <li class="progress-item is-current" aria-current="step">
+                        <span>1</span> 훈련 정보
+                    </li>
+                    <li class="progress-item">
+                        <span>2</span> 훈련 조건
+                    </li>
+                    <li class="progress-item">
+                        <span>3</span> 내용 확인
+                    </li>
+                </ol>
 
-                <article class="event-card">
-                    <h3>학습자 정보</h3>
-                    <label for="nickname">학습자 이름</label>
-                    <input type="text" id="nickname" maxlength="10">
-                    <p id="nicknameCount" aria-live="polite">0 / 10</p>
-                </article>
+                <form id="plan-form" novalidate>
 
-                <article class="event-card">
-                    <h3>훈련 결과 저장 동의</h3>
-                    <label class="agree-row">
-                        <input type="checkbox" id="agreeCheck">
-                            기억력 훈련 결과 저장에 동의합니다.
-                    </label>
-                    <p id="agreeMessage" aria-live="polite">
-                            동의 후 훈련을 시작할 수 있습니다
-                    </p>
-                    <button id="startButton" type="button" disabled>
-                            훈련 설정 시작하기
-                    </button>
-                </article>
+                    <!-- STEP 01 : 훈련 정보 -->
+                    <div class="flow-step" data-step="1">
+                        <p class="step-kicker">STEP 01 / 훈련 정보</p>
+                        <h3>어떤 기억력 훈련을 계획하나요?</h3>
+                        <p class="step-description">
+                            계획을 다시 찾을 수 있도록 훈련 제목을 적어 주세요.
+                        </p>
+
+                        <div class="field">
+                            <label for="training-title">
+                                훈련 제목 <span class="required">필수</span>
+                            </label>
+                            <input
+                                id="training-title"
+                                name="title"
+                                type="text"
+                                maxlength="60"
+                                placeholder="예: 오늘의 기억력 훈련"
+                                aria-describedby="title-help title-error"
+                            >
+                            <p id="title-help" class="field-help">
+                                최대 60자까지 입력할 수 있습니다.
+                            </p>
+                            <p id="title-error" class="field-error" role="alert"></p>
+                        </div>
+
+                        <div class="field">
+                            <label for="nickname">
+                                학습자 이름 <span class="optional">선택</span>
+                            </label>
+                            <input
+                                id="nickname"
+                                name="nickname"
+                                type="text"
+                                maxlength="10"
+                                placeholder="예: 홍길동"
+                                aria-describedby="nickname-count"
+                            >
+                            <p id="nickname-count" class="field-help" aria-live="polite">
+                                0 / 10자
+                            </p>
+                        </div>
+
+                        <div class="step-actions step-actions-end">
+                            <button id="info-next" class="button button-primary" type="button">
+                                훈련 조건 선택하기 <span aria-hidden="true">→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 02 : 훈련 조건 -->
+                    <div class="flow-step" data-step="2" hidden>
+                        <p class="step-kicker">STEP 02 / 훈련 조건</p>
+                        <h3>어떻게 훈련할까요?</h3>
+                        <p class="step-description">
+                            기억력 훈련의 난이도와 시간을 선택하세요.
+                        </p>
+
+                        <fieldset class="field choice-fieldset">
+                            <legend>훈련 난이도</legend>
+                            <div class="duration-options">
+                                <label class="choice-card">
+                                    <input type="radio" name="difficulty" value="easy">
+                                    <span>
+                                        <strong>쉬움</strong>
+                                        <small>가볍게 시작하기</small>
+                                    </span>
+                                </label>
+                                <label class="choice-card">
+                                    <input type="radio" name="difficulty" value="normal" checked>
+                                    <span>
+                                        <strong>보통</strong>
+                                        <small>기본 기억력 훈련</small>
+                                    </span>
+                                </label>
+                                <label class="choice-card">
+                                    <input type="radio" name="difficulty" value="hard">
+                                    <span>
+                                        <strong>어려움</strong>
+                                        <small>집중해서 훈련하기</small>
+                                    </span>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <div class="field qna-field">
+                            <label class="check-row" for="time-option">
+                                <input
+                                    id="time-option"
+                                    type="checkbox"
+                                    aria-controls="time-options"
+                                >
+                                <span>
+                                    <strong>훈련 시간을 설정할게요</strong>
+                                    <small>원하는 훈련 시간을 선택할 수 있습니다.</small>
+                                </span>
+                            </label>
+
+                            <fieldset id="time-options" class="qna-options" hidden>
+                                <legend>훈련 시간</legend>
+                                <div class="inline-options">
+                                    <label>
+                                        <input type="radio" name="training-time" value="5">
+                                        5분
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="training-time" value="10" checked>
+                                        10분
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="training-time" value="15">
+                                        15분
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="step-actions">
+                            <button id="option-prev" class="button button-secondary" type="button">
+                                이전 단계
+                            </button>
+                            <button id="option-next" class="button button-primary" type="button">
+                                내용 확인하기 <span aria-hidden="true">→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 03 : 내용 확인 -->
+                    <div class="flow-step" data-step="3" hidden>
+                        <p class="step-kicker">STEP 03 / 내용 확인</p>
+                        <h3>이 계획으로 저장할까요?</h3>
+                        <p class="step-description">
+                            내용을 확인한 뒤 저장하세요. 수정 버튼으로 해당 단계로 돌아갈 수 있습니다.
+                        </p>
+
+                        <dl class="summary-list">
+                            <div>
+                                <dt>훈련 제목</dt>
+                                <dd id="summary-title"></dd>
+                            </div>
+                            <div>
+                                <dt>학습자 이름</dt>
+                                <dd id="summary-nickname"></dd>
+                            </div>
+                            <div>
+                                <dt>훈련 난이도</dt>
+                                <dd id="summary-difficulty"></dd>
+                            </div>
+                            <div>
+                                <dt>훈련 시간</dt>
+                                <dd id="summary-time"></dd>
+                            </div>
+                        </dl>
+
+                        <div class="step-actions">
+                            <div class="edit-actions">
+                                <button id="edit-info" class="button button-text" type="button">
+                                    정보 수정
+                                </button>
+                                <button id="edit-options" class="button button-text" type="button">
+                                    조건 수정
+                                </button>
+                            </div>
+                            <button id="save-plan" class="button button-primary" type="button">
+                                계획 저장하기 <span aria-hidden="true">→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 04 : 저장 완료 -->
+                    <div class="flow-step complete-step" data-step="4" hidden>
+                        <div class="complete-mark" aria-hidden="true">✓</div>
+                        <p class="step-kicker">계획 저장 완료</p>
+                        <h3>기억력 훈련 계획을 저장했어요.</h3>
+                        <p id="complete-message">
+                            내 훈련 계획에서 다시 확인할 수 있습니다.
+                        </p>
+
+                        <div class="complete-actions">
+                            <a class="button button-primary" href="#archive">
+                                내 훈련 계획 보기 <span aria-hidden="true">↗</span>
+                            </a>
+                            <button id="restart-button" class="button button-secondary" type="button">
+                                새 계획 만들기
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
             </div>
         </section>
 
-        
-        <dialog id="memory-dialog" aria-labelledby="memory-title" aria-describedby="memory-description">
-            <h2 id="memory-title">훈련 결과 저장 안내</h2>
-            <p id="memory-description">기억력 훈련 결과를 저장할 수 있습니다. 지금은 훈련 조건만 설정하며 실제 훈련은 시작되지 않습니다.</p>
-            <div class="dialog-actions">
-                <button id="memory-cancel" type="button">돌아가기</button>
-                <button id="memory-confirm" type="button">동의하고 설정 시작하기</button>
+        <!-- 내 훈련 계획 -->
+        <section id="archive" class="section container archive-section"
+                 aria-labelledby="archive-title">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">MY TRAINING</p>
+                    <h2 id="archive-title">
+                        내 훈련 계획
+                        <span id="plan-count" class="count-badge">0</span>
+                    </h2>
+                </div>
+                <p>저장한 계획을 다시 확인하거나 취소할 수 있습니다.</p>
             </div>
+
+            <p id="archive-status"
+               class="archive-status"
+               role="status"
+               aria-live="polite"></p>
+
+            <div id="empty-state" class="empty-state">
+                <span class="empty-icon" aria-hidden="true">↗</span>
+                <h3>아직 저장한 훈련 계획이 없어요.</h3>
+                <p>첫 번째 기억력 훈련 계획을 만들어 보세요.</p>
+                <a class="button button-secondary" href="#planner">
+                    계획 만들러 가기
+                </a>
+            </div>
+
+            <ul id="plan-list"
+                class="plan-list"
+                aria-label="저장한 기억력 훈련 계획"
+                hidden></ul>
+
+        </section>
+        <dialog id="plan-dialog" class="plan-dialog" aria-labelledby="dialog-title">
+
+            <div class="dialog-top">
+                <p class="eyebrow">저장한 훈련 계획</p>
+                <button id="dialog-close"
+                        class="icon-button"
+                        type="button"
+                        aria-label="닫기">×</button>
+            </div>
+
+            <h2 id="dialog-title"></h2>
+            <p id="dialog-status" class="dialog-status"></p>
+
+            <dl class="summary-list">
+                <div>
+                    <dt>학습자 이름</dt>
+                    <dd id="dialog-nickname"></dd>
+                </div>
+                <div>
+                    <dt>훈련 난이도</dt>
+                    <dd id="dialog-difficulty"></dd>
+                </div>
+                <div>
+                    <dt>훈련 시간</dt>
+                    <dd id="dialog-time"></dd>
+                </div>
+            </dl>
+
+            <button id="dialog-done"
+                    class="button button-primary"
+                    type="button">
+                확인했어요
+            </button>
+
         </dialog>
-
-        <section id="training-flow" class="training-flow" hidden>
-            <h2>기억력 훈련 설정</h2>
-            <p class="progress" aria-label="설정 진행 단계">
-                <span class="progress_item">1 · 정보</span>
-                <span class="progress_item">2 · 조건</span>
-                <span class="progress_item">3 · 확인</span>
-            </p>
-
-            <section class="step" data-step="1" hidden>
-                <h3>학습자 정보를 입력해주세요.</h3>
-                <label for="learner-name">학습자 이름</label>
-                <input id="learner-name" type="text" placeholder="예 : 나의 이름" aria-describedby="name-error">
-                <p id="name-error" class="error-message" aria-live="polite"></p>
-                <button id="name-next" type="button">훈련 조건 설정하기</button>
-            </section>
-
-            <section class="step" data-step="2" hidden>
-                <h3>훈련 조건을 선택해주세요.</h3>
-                <label for="difficulty-range">훈련 난이도</label>
-                <input id="difficulty-range" type="range" min="0" max="2" step="1" value="1">
-                <output id="difficulty-value" for="difficulty-range">보통</output>
-
-                <label>
-                    <input type="checkbox" id="time-option">훈련 시간 설정
-                </label>
-                <fieldset id="time-options" hidden>
-                    <legend>훈련 시간</legend>
-                    <label><input type="radio" name="training-time" value="5">5분</label>
-                    <label><input type="radio" name="training-time" value="10" checked>10분</label>
-                    <label><input type="radio" name="training-time" value="15">15분</label>
-                </fieldset>
-
-                <div class="step-actions">
-                    <button id="option-prev" type="button">이전</button>
-                    <button id="option-next" type="button">내용 확인하기</button>
-                </div>
-            </section>
-
-            <section class="step" data-step="3" hidden>
-                <h3>입력한 내용을 확인해주세요.</h3>
-                <div class="summary-list">
-                    <div><span>학습자 이름</span><strong id="summary-name"></strong></div>
-                    <div><span>훈련 난이도</span><strong id="summary-difficulty"></strong></div>
-                    <div><span>훈련 시간</span><strong id="summary-time"></strong></div>
-                </div>
-                <div class="step-actions">
-                    <button id="summary-prev" type="button">수정하기</button>
-                    <button id="finish-button" type="button">설정 완료하기</button>
-                </div>
-            </section>
-
-            <section class="step complete-step" data-step="4" hidden>
-                <h3>훈련 설정이 완료되었습니다.</h3>
-                <p>선택한 내용을 확인했습니다. 필요하면 다시 설정할 수 있습니다.</p>
-                <button id="restart-button" type="button">다시 설정하기</button>
-            </section>
-        </section>
 
         <section id="memory-quiz" class="quiz-card">
             <div class="quiz-header">
@@ -296,5 +475,4 @@
     <script src="script.js"></script>
 
 </body>
-
 </html>
