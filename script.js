@@ -164,6 +164,9 @@ const steps = [...document.querySelectorAll(".flow-step")];
 const progressItems = [...document.querySelectorAll(".progress-item")];
 const titleInput = document.querySelector("#training-title");
 const titleError = document.querySelector("#title-error");
+const titleField = document.querySelector("#title-field");
+const titleHelp = document.querySelector("#title-help");
+const titleCount = document.querySelector("#title-count");
 const nicknameInput = document.querySelector("#nickname");
 const nicknameCount = document.querySelector("#nickname-count");
 const timeOption = document.querySelector("#time-option");
@@ -175,7 +178,6 @@ const planCount = document.querySelector("#plan-count");
 const archiveStatus = document.querySelector("#archive-status");
 const planDialog = document.querySelector("#plan-dialog");
 
-// 저장된 계획 불러오기
 function readPlans() {
     try {
         const stored = JSON.parse(localStorage.getItem(storageKey) || "[]");
@@ -220,7 +222,6 @@ function savePlans() {
     }
 }
 
-// 단계 이동
 function showStep(number) {
     currentStep = number;
 
@@ -251,6 +252,21 @@ function showStep(number) {
     });
 }
 
+function updateTitleExperience(){
+    const length = titleInput.value.length;
+    const valid = titleInput.value.trim().length >= 2;
+    const hasError = titleInput.getAttribute("aria-invalid") === "true";
+
+    titleCount.textContent = length + " / 60자";
+    titleField.classList.toggle("has-error", hasError);
+    titleField.classList.toggle("is-valid", valid && !hasError);
+    titleHelp.textContent = hasError
+        ? "제목 입력 조건을 다시 확인해 주세요."
+        : valid
+            ? "입력 조건을 충족했습니다."
+    : "2자 이상 60자 이하로 입력해 주세요."
+}
+
 // 훈련 제목 입력
 function validateTitle() {
     const title = titleInput.value.trim();
@@ -258,17 +274,20 @@ function validateTitle() {
         titleError.textContent =
             "훈련 제목을 입력해 주세요.";
         titleInput.setAttribute("aria-invalid", "true");
+        updateTitleExperience();
         titleInput.focus();
         return false;
     }
     if (title.length < 2) {
         titleError.textContent ="훈련 제목은 최소 2자 이상이어야 합니다.";
         titleInput.setAttribute("aria-invalid", "true");
+        updateTitleExperience();
         titleInput.focus();
         return false;
     }
     titleError.textContent = "";
     titleInput.removeAttribute("aria-invalid");
+    updateTitleExperience();
     return true;
 }
 
@@ -322,6 +341,8 @@ function updateSummary() {
 titleInput.addEventListener("input", () => {
     if (titleInput.getAttribute("aria-invalid") === "true") {
         validateTitle();
+    } else{
+        updateTitleExperience();
     }
 });
 
@@ -355,7 +376,7 @@ form.addEventListener("submit", (event) => {
 
 // 1단계 -> 2단계
 document.querySelector("#info-next").addEventListener("click", () => {
-    if (validateTitle()) showStep(2);
+if (validateTitle()) showStep(2);
 });
 // 2단계 -> 1단계
 document.querySelector("#option-prev").addEventListener("click", () => {
@@ -416,12 +437,13 @@ document.querySelector("#restart-button").addEventListener("click", () => {
     nicknameCount.textContent = "0 / 10자";
     titleError.textContent = "";
     titleInput.removeAttribute("aria-invalid");
+    titleField.classList.remove("is-valid", "has-error");
+    updateTitleExperience();
 
     showStep(1);
     titleInput.focus();
 });
 
-// HTML 요소 생성
 function createText(tag, className, content) {
     const element = document.createElement(tag);
     element.className = className;

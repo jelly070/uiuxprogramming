@@ -279,89 +279,89 @@ button:active{
 
 /* 중간고사 - 기억력 미니 퀴즈 전체 영역 */
 .quiz-card {
-    margin-top: 32px;
-    padding: 24px;
-    border: 1px solid #c9e2d0;
-    border-radius: 24px;
-    background-color: #ffffff;
+    margin-top : 32px;
+    padding : 24px;
+    border : 1px solid #c9e2d0;
+    border-radius : 24px;
+    background-color : #ffffff;
 }
 
 .quiz-header h2 {
-    color: #3f795b;
+    color : #3f795b;
 }
 
 /* 퀴즈 진행 단계 표시 */
 .quiz-progress {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    margin-top: 24px;
-    margin-bottom: 24px;
-    padding: 12px 20px;
-    border: 1px solid #c9e2d0;
-    border-radius: 12px;
-    background-color: #f4f8f5;
+    display : flex;
+    justify-content : space-between;
+    align-items : center;
+    gap : 12px;
+    margin-top : 24px;
+    margin-bottom : 24px;
+    padding : 12px 20px;
+    border : 1px solid #c9e2d0;
+    border-radius : 12px;
+    background-color : #f4f8f5;
 }
 
 .quiz-progress p {
-    color: #3f795b;
-    font-weight: 800;
+    color : #3f795b;
+    font-weight : 800;
 }
 
 .quiz-progress span {
-    color: #555763;
-    font-weight: 700;
+    color : #555763;
+    font-weight : 700;
 }
 
 .quiz-progress-bar {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 24px;
+    display : flex ;
+    gap : 8px;
+    margin-bottom : 24px;
 }
 
 .quiz-progress-item {
-    flex: 1;
-    height: 8px;
-    border-radius: 8px;
-    background-color: #e5e9e6;
+    flex : 1;
+    height : 8px;
+    border-radius : 8px;
+    background-color : #e5e9e6;
 }
 
 .quiz-progress-item.is-active {
-    background-color: #3f795b;
+    background-color : #3f795b;
 }
 
 /* 현재 단계만 화면에 표시 */
 .quiz-step[hidden] {
-    display: none;
+    display : none;
 }
 
 /* 기억할 그림 3개 배치 */
 .quiz-images {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 24px;
+    display : grid;
+    grid-template-columns : repeat(3, 1fr);
+    gap : 16px;
+    margin-top : 24px;
 }
 
 .quiz-images img {
-    width: 100%;
-    margin: 0;
-    border: 1px solid #c9e2d0;
-    border-radius: 12px;
-    background-color: #f4f8f5;
+    width : 100%;
+    margin : 0;
+    border : 1px solid #c9e2d0;
+    border-radius : 12px;
+    background-color : #f4f8f5;
 }
 
 .quiz-tip {
-    margin-top: 24px;
-    font-weight: 700;
+    margin-top : 24px;
+    font-weight : 700;
 }
 
 /* 퀴즈 정답 선택 영역 */
 .quiz-options {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    display : flex;
+    flex-direction : column;
+    gap: 12px ;
     padding: 20px;
     border: 1px solid #c9e2d0;
     border-radius: 12px;
@@ -416,6 +416,8 @@ button:active{
     --blue-hover: #305E46;
     --lavender: #EAF4EC;
     --danger: #b43147;
+    --success: #356AC3;
+    --success-bg: #EAF2FF;
     --shadow: 0 18px 48px rgba(17, 70, 35, .07);
 }
 
@@ -670,6 +672,25 @@ button:disabled {
     border-color: var(--danger);
 }
 
+#title-field.is-valid input[type="text"] {
+    border-color : var(--success);
+    background-color : var(--success-bg);
+}
+
+#title-field.is-valid .field-count{
+    color: var(--success);
+    font-weight: 800;
+}
+
+#title-field.has-error input[type="text"] {
+    border-color: var(--danger);
+}
+
+#title-field.has-error .field-count{
+    color: var(--danger);
+    font-weight: 800;
+}
+
 .field input::placeholder {
     color: #8993a8;
 }
@@ -679,15 +700,37 @@ button:disabled {
     font-size: 12px;
 }
 
+.field-meta{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    margin-top: 5px;
+}
+
+.field-meta .field-help {
+    margin: 0;
+}
+
+.field-count{
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+}
+
 .field-error {
     margin: 6px 0 0;
     color: var(--danger);
     font-size: 13px;
     font-weight: 700;
+    min-height: 21px;
 }
 
 .field-error:empty {
-    display: none;
+    display: block;
+    visibility: hidden;
 }
 
 /* 훈련 난이도 */
@@ -1087,8 +1130,7 @@ button:disabled {
 
 /* 다크 모드 */
 body.dark {
-    color-scheme: dark;
-
+    color-scheme: dark; 
     --page: #0b1712;
     --surface: #17251d;
     --surface-soft: #24382c;
@@ -1099,6 +1141,8 @@ body.dark {
     --blue-hover: #6fae87;
     --lavender: #294332;
     --danger: #ff9baa;
+    --success: #8CB5FF;
+    --success-bg: #203657;
     --shadow: 0 18px 48px rgba(0, 0, 0, .17);
 
     background-color: var(--page);
@@ -1159,7 +1203,6 @@ body.dark #subscribeMessage.is-success {
     background-color: var(--surface-soft);
 }
 
-/* 교수님 훈련 계획 영역 */
 body.dark .planner-card,
 body.dark .plan-card,
 body.dark .empty-state,
@@ -1226,7 +1269,6 @@ body.dark .dialog-status {
 }
 
 /* 반응형 */
-
 @media (max-width: 800px) {
     .section-heading {
         align-items: start;
@@ -1316,7 +1358,7 @@ body.dark .dialog-status {
     }
 }
 
-/* 기존 Memory Up 퀴즈 모바일 디자인 */
+/* 퀴즈 모바일 디자인 */
 @media (max-width: 768px) {
     .quiz-card {
         padding: 20px;
