@@ -13,17 +13,21 @@
 </head>
 
 <body>
-    <header>
-        <h1>Memory Up | 기억력 훈련 서비스</h1>
-        <p>기억을 쌓고, 실력을 높이다.</p>
+    <header class="site-header">
+    <div class="container header-inner">
 
-        <nav aria-label="주요 메뉴">
-            <a href="#about">서비스 소개</a>
-            <a href="#features">훈련 기능</a>
-            <a href="#planner">훈련 계획 만들기</a>
-            <a href="#archive">내 훈련 계획</a>
-            <a href="#memory-quiz">기억력 미니 퀴즈</a>
-            <a href="#subscribe">훈련 소식 받기</a>
+        <a class="brand" href="#top" aria-label="Memory Up 맨 위로">
+            <span>Memory Up | 기억력 훈련 서비스</span>
+        </a>
+
+        <nav id="main-nav" class="main-nav" aria-label="주요 메뉴">
+            <ul>
+                <li><a href="#features">훈련 기능</a></li>
+                <li><a href="#planner">기억력 훈련 계획 만들기</a></li>
+                <li><a href="#archive">내 훈련 계획</a></li>
+                <li><a href="#memory-quiz">기억력 미니 퀴즈</a></li>
+                <li><a href="#subscribe">훈련 소식 받기</a></li>
+            </ul>
         </nav>
 
         <button id="theme-button"
@@ -32,17 +36,32 @@
                 aria-pressed="false">
             다크 모드
         </button>
-    </header>
 
-    <main>
-        <section id="about">
-            <h2>서비스 소개</h2>
-            <h3>반복 학습으로 키우는 기억력</h3>
+    </div>
+</header>
+    <main id = "top">
+        <section class="hero container" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="eyebrow">MEMORY UP</p>
 
-            <img src="assets\images\service.png" alt="단어와 그림을 활용한 기억력 훈련 이미지">
+                <h1 id="hero-title">
+                    오늘의 기억력 훈련을<br>
+                    <em>계획해 보세요.</em>
+                </h1>
 
-            <p>다양한 암기 활동과 반복 학습을 통해 기억력 향상을 돕는 서비스입니다.</p>
-            <p>단계별 훈련과 기억력 테스트를 통해 학습 결과를 확인하고, 자신에게 맞는 학습 방법을 찾아갈 수 있습니다.</p>
+                <p class="hero-description">
+                    기억력 훈련 계획을 만들고 저장해 보세요.
+                    저장한 계획은 다시 확인하거나 취소할 수 있습니다.
+                </p>
+
+                <a class="button button-primary" href="#planner">
+                    새 훈련 계획 만들기 →
+                </a>
+            </div>
+
+            <figure class="hero-image">
+                <img src="assets/images/service.png" alt="기억력 훈련 서비스 이미지">
+            </figure>
         </section>
 
         <section id="features">
@@ -59,7 +78,6 @@
                     단계별 연습
                 </button>         
 
-
                 <button
                     id = "tab-test" 
                     class = "tab" 
@@ -70,7 +88,6 @@
                     data-target = "#feature-test">
                     기억력 테스트
                 </button>
-
 
                 <button
                     id = "tab-results" 
@@ -330,6 +347,12 @@
                 <p>저장한 계획을 다시 확인하거나 취소할 수 있습니다.</p>
             </div>
 
+            <div class="plan-filters" role="group" aria-label="훈련 계획 표시 범위">
+                <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">전체</button>
+                <button class="filter-button" type="button" data-filter="active" aria-pressed="false">저장됨</button>
+                <button class="filter-button" type="button" data-filter="canceled" aria-pressed="false">취소됨</button>
+            </div>
+            
             <p id="archive-status"
                class="archive-status"
                role="status"
