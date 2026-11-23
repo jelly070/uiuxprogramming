@@ -171,7 +171,7 @@ const nicknameInput = document.querySelector("#nickname");
 const nicknameCount = document.querySelector("#nickname-count");
 const timeOption = document.querySelector("#time-option");
 const timeOptions = document.querySelector("#time-options");
-const timeInputs = document.querySelectorAll('input[name="time-count"]');
+const timeInputs = document.querySelectorAll('input[name="training-count"]');
 const planList = document.querySelector("#plan-list");
 const emptyState = document.querySelector("#empty-state");
 const planCount = document.querySelector("#plan-count");
