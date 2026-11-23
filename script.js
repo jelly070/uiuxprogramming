@@ -162,15 +162,13 @@ const storageKey = "memoryup-training-plans-v1";
 const form = document.querySelector("#plan-form");
 const steps = [...document.querySelectorAll(".flow-step")];
 const progressItems = [...document.querySelectorAll(".progress-item")];
-
 const titleInput = document.querySelector("#training-title");
 const titleError = document.querySelector("#title-error");
 const nicknameInput = document.querySelector("#nickname");
 const nicknameCount = document.querySelector("#nickname-count");
-
 const timeOption = document.querySelector("#time-option");
 const timeOptions = document.querySelector("#time-options");
-
+const timeInputs = document.querySelectorAll('input[name="time-count"]');
 const planList = document.querySelector("#plan-list");
 const emptyState = document.querySelector("#empty-state");
 const planCount = document.querySelector("#plan-count");
@@ -253,18 +251,22 @@ function showStep(number) {
     });
 }
 
-// 훈련 제목 입력 검사
+// 훈련 제목 입력
 function validateTitle() {
     const title = titleInput.value.trim();
-
     if (!title) {
         titleError.textContent =
-            "훈련 제목을 입력해 주세요. 공백만으로는 저장할 수 없습니다.";
+            "훈련 제목을 입력해 주세요.";
         titleInput.setAttribute("aria-invalid", "true");
         titleInput.focus();
         return false;
     }
-
+    if (title.length < 2) {
+        titleError.textContent ="훈련 제목은 최소 2자 이상이어야 합니다.";
+        titleInput.setAttribute("aria-invalid", "true");
+        titleInput.focus();
+        return false;
+    }
     titleError.textContent = "";
     titleInput.removeAttribute("aria-invalid");
     return true;
@@ -285,14 +287,14 @@ function getFormValues() {
     };
 }
 
-// 난이도를 한글로 표시
+// 난이도
 function difficultyText(plan) {
     if (plan.difficulty === "easy") return "쉬움";
     if (plan.difficulty === "hard") return "어려움";
     return "보통";
 }
 
-// 훈련 시간 표시
+// 훈련 시간
 function timeText(plan) {
     return plan.timeIncluded
         ? `${plan.trainingTime}분`
@@ -329,10 +331,18 @@ nicknameInput.addEventListener("input", () => {
         `${nicknameInput.value.length} / 10자`;
 });
 
+function syncTimeOptions(){
+    const open = timeOption.checked;
+    timeOption.setAttribute("aria-expanded", String(open));
+    timeOptions.hidden = !open;
+    timeInputs.forEach((input) => {
+        input.disabled = !open;
+    });
+}
+
 // 훈련 시간 설정 여부
-timeOption.addEventListener("change", () => {
-    timeOptions.hidden = !timeOption.checked;
-});
+timeOption.addEventListener("change", syncTimeOptions);
+syncTimeOptions();
 
 // 폼 제출
 form.addEventListener("submit", (event) => {
@@ -347,12 +357,10 @@ form.addEventListener("submit", (event) => {
 document.querySelector("#info-next").addEventListener("click", () => {
     if (validateTitle()) showStep(2);
 });
-
 // 2단계 -> 1단계
 document.querySelector("#option-prev").addEventListener("click", () => {
     showStep(1);
 });
-
 // 2단계 -> 3단계
 document.querySelector("#option-next").addEventListener("click", () => {
     updateSummary();
@@ -404,7 +412,7 @@ document.querySelector("#save-plan").addEventListener("click", () => {
 // 새 계획 만들기
 document.querySelector("#restart-button").addEventListener("click", () => {
     form.reset();
-    timeOptions.hidden = true;
+    syncTimeOptions();
     nicknameCount.textContent = "0 / 10자";
     titleError.textContent = "";
     titleInput.removeAttribute("aria-invalid");

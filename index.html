@@ -138,7 +138,6 @@
                 </ol>
 
                 <form id="plan-form" novalidate>
-
                     <!-- STEP 01 : 훈련 정보 -->
                     <div class="flow-step" data-step="1">
                         <p class="step-kicker">STEP 01 / 훈련 정보</p>
@@ -147,7 +146,7 @@
                             계획을 다시 찾을 수 있도록 훈련 제목을 적어 주세요.
                         </p>
 
-                        <div class="field">
+                        <div class="field" id="title-field">
                             <label for="training-title">
                                 훈련 제목 <span class="required">필수</span>
                             </label>
@@ -155,13 +154,15 @@
                                 id="training-title"
                                 name="title"
                                 type="text"
+                                minlength="2"
                                 maxlength="60"
-                                placeholder="예: 오늘의 기억력 훈련"
-                                aria-describedby="title-help title-error"
+                                required placeholder="예 : 오늘의 기억력 훈련"
+                                aria-describedby="title-help title-count title-error"
                             >
-                            <p id="title-help" class="field-help">
-                                최대 60자까지 입력할 수 있습니다.
-                            </p>
+                            <div class="field-mata">
+                                <p id="title-help" class="field-help">최대 60자까지 입력할 수 있습니다.</p>
+                                <p id="title-count" class="field-count" aria-live="polite">0 / 60자</p>
+                            </div>
                             <p id="title-error" class="field-error" role="alert"></p>
                         </div>
 
@@ -174,7 +175,7 @@
                                 name="nickname"
                                 type="text"
                                 maxlength="10"
-                                placeholder="예: 홍길동"
+                                placeholder="예 : 홍길동"
                                 aria-describedby="nickname-count"
                             >
                             <p id="nickname-count" class="field-help" aria-live="polite">
@@ -193,9 +194,7 @@
                     <div class="flow-step" data-step="2" hidden>
                         <p class="step-kicker">STEP 02 / 훈련 조건</p>
                         <h3>어떻게 훈련할까요?</h3>
-                        <p class="step-description">
-                            기억력 훈련의 난이도와 시간을 선택하세요.
-                        </p>
+                        <p class="step-description">기억력 훈련의 난이도와 시간을 선택하세요.</p>
 
                         <fieldset class="field choice-fieldset">
                             <legend>훈련 난이도</legend>
@@ -228,8 +227,10 @@
                             <label class="check-row" for="time-option">
                                 <input
                                     id="time-option"
+                                    name="qna"
                                     type="checkbox"
                                     aria-controls="time-options"
+                                    aria-expanded="false"
                                 >
                                 <span>
                                     <strong>훈련 시간을 설정할게요</strong>
@@ -240,29 +241,16 @@
                             <fieldset id="time-options" class="qna-options" hidden>
                                 <legend>훈련 시간</legend>
                                 <div class="inline-options">
-                                    <label>
-                                        <input type="radio" name="training-time" value="5">
-                                        5분
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="training-time" value="10" checked>
-                                        10분
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="training-time" value="15">
-                                        15분
-                                    </label>
+                                    <label><input type="radio" name="training-time" value="5">5분</label>
+                                    <label><input type="radio" name="training-time" value="10" checked>10분</label>
+                                    <label><input type="radio" name="training-time" value="15">15분</label>
                                 </div>
                             </fieldset>
                         </div>
 
                         <div class="step-actions">
-                            <button id="option-prev" class="button button-secondary" type="button">
-                                이전 단계
-                            </button>
-                            <button id="option-next" class="button button-primary" type="button">
-                                내용 확인하기 <span aria-hidden="true">→</span>
-                            </button>
+                            <button id="option-prev" class="button button-secondary" type="button">이전 단계</button>
+                            <button id="option-next" class="button button-primary" type="button">내용 확인하기<span aria-hidden="true">→</span></button>
                         </div>
                     </div>
 
