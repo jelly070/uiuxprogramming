@@ -177,6 +177,10 @@ const emptyState = document.querySelector("#empty-state");
 const planCount = document.querySelector("#plan-count");
 const archiveStatus = document.querySelector("#archive-status");
 const planDialog = document.querySelector("#plan-dialog");
+const saveButton = document.querySelector("#save-plan");
+const submitStatus = document.querySelector("#submit-status");
+const completeMessage = document.querySelector("#complete-message");
+let isSubmitting = false;
 
 function readPlans() {
     try {
@@ -337,6 +341,16 @@ function updateSummary() {
         timeText(values);
 }
 
+function setSubmitState(state, message){
+    isSubmitting = state === "loading";
+    form.setAttribute("aria-busy", String(isSubmitting));
+    saveButton.disabled = isSubmitting;
+    saveButton.textContent = isSubmitting ? "저장하는 중..." : "계획 저장하기";
+    submitStatus.textContent = message;
+    submitStatus.classList.toggle("is-success", state === "success");
+    submitStatus.classList.toggle("has-error", state === "error");
+}
+
 // 제목 입력 시 오류 상태 다시 검사
 titleInput.addEventListener("input", () => {
     if (titleInput.getAttribute("aria-invalid") === "true") {
@@ -370,8 +384,26 @@ form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     if (currentStep === 1) {
-        document.querySelector("#info-next").click();
+        if(validateTitle()) showStep(2);
+        return;
     }
+        if(currentStep !== 3 || isSubmitting) return;
+
+        if(!validateTitle()) {
+            showStep(1);
+            titleInput.focus();
+            return;
+        }
+
+        setSubmitState("loading", "입력한 계획을 저장하고 있습니다.");
+        window.setTimeout(() => {
+            if(!saveCurrentPlan()) {
+                setSubmitState("error", "계획을 저장하지 못했습니다. 입력 내용을 확인하고 다시 시도해 주세요.");
+                return;
+            }
+            setSubmitState("success", "계획 저장이 완료되었습니다.");
+            showStep(4);
+        }, 600); 
 });
 
 // 1단계 -> 2단계
@@ -398,14 +430,7 @@ document.querySelector("#edit-options").addEventListener("click", () => {
     showStep(2);
 });
 
-// 계획 저장
-document.querySelector("#save-plan").addEventListener("click", () => {
-    if (!validateTitle()) {
-        showStep(1);
-        titleInput.focus();
-        return;
-    }
-
+function saveCurrentPlan() {
     const plan = {
         id: typeof crypto.randomUUID === "function"
             ? crypto.randomUUID()
@@ -416,19 +441,16 @@ document.querySelector("#save-plan").addEventListener("click", () => {
     };
 
     plans.unshift(plan);
+    if(!savePlans()) {
+        plans.shift();
+        return false;
+    }
 
-    const persisted = savePlans();
     renderPlans();
-
-    archiveStatus.textContent = persisted
-        ? `‘${plan.title}’ 계획을 저장했습니다. 아래 목록에서 다시 열 수 있습니다.`
-        : "현재 화면에 저장했습니다. 브라우저 저장 공간을 사용할 수 없어 새로고침하면 사라질 수 있습니다.";
-
-    document.querySelector("#complete-message").textContent =
-        `‘${plan.title}’ 계획을 내 훈련 계획에서 다시 확인할 수 있습니다.`;
-
-    showStep(4);
-});
+    archiveStatus.textContent = `‘${plan.title}’ 계획을 저장했습니다.`;
+    completeMessage.textContent = `‘${plan.title}’ 계획을 내 계획에서 다시 확인할 수 있습니다.`;
+    return true;
+}
 
 // 새 계획 만들기
 document.querySelector("#restart-button").addEventListener("click", () => {
@@ -439,6 +461,7 @@ document.querySelector("#restart-button").addEventListener("click", () => {
     titleInput.removeAttribute("aria-invalid");
     titleField.classList.remove("is-valid", "has-error");
     updateTitleExperience();
+    setSubmitState("idle", "");
 
     showStep(1);
     titleInput.focus();

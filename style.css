@@ -857,6 +857,22 @@ button:disabled {
     justify-content: flex-end;
 }
 
+.submit-status{
+    min-height: 24px;
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.submit-status.is-success{
+    color: var(--success);
+}
+
+.submit-status.has-error{
+    color: var(--danger);
+}
+
 .edit-actions {
     display: flex;
     gap: 8px;
