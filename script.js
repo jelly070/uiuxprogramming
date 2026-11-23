@@ -178,6 +178,8 @@ const planCount = document.querySelector("#plan-count");
 const archiveStatus = document.querySelector("#archive-status");
 const planDialog = document.querySelector("#plan-dialog");
 const navLinks = document.querySelectorAll(".main-nav a");
+const menuToggle = document.querySelector("#menu-toggle");
+const mainNav = document.querySelector("#main-nav");
 const filterButtons = document.querySelectorAll(".filter-button");
 let currentFilter = "all";
 const saveButton = document.querySelector("#save-plan");
@@ -497,6 +499,21 @@ function updateCurrentNav() {
 
 window.addEventListener("hashchange", updateCurrentNav);
 updateCurrentNav();
+
+menuToggle.addEventListener("click", () => {
+    const isOpen = mainNav.classList.toggle("is-open");
+
+    menuToggle.textContent = isOpen ? "메뉴 닫기" : "메뉴 열기"
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.forEach((link) => {
+    link.addEventListener(("click"), () => {
+        mainNav.classList.remove("is-open");
+        menuToggle.textContent = "메뉴 열기";
+        menuToggle.setAttribute("aria-expanded", "false");
+    });
+});
 
 function getVisiblePlans(){
     return plans.filter((plan) => {
