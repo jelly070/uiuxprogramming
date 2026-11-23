@@ -594,7 +594,6 @@ button:active{
 
 
 /* 기억력 훈련 계획 만들기 */
-
 :root {
     --page: #FCFDFB;
     --surface: #ffffff;
@@ -1170,6 +1169,13 @@ button:disabled {
     border-color: var(--green);
     background: var(--green);
     color: #fff;
+}
+
+.main-nav a[aria-current="page"],
+.filter-button[aria-pressed="true"]{
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 6px;
 }
 
 .archive-status {
