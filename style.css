@@ -281,6 +281,23 @@ p{
     box-sizing : border-box;
 }
 
+.skip-link{
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 10;
+    padding: 10px 14px;
+    border: 2px solid var(--green);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--ink);
+    transform: translateY(-160%);
+}
+
+.skip-link:focus-visible{
+    transform: translateY(0);
+}
+
 .subscribe-card{
     background-color : #EAF4EC;
     padding : 24px;
